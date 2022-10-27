@@ -7,19 +7,5 @@
 
 
 # To do 
-meaning_of_life = None
-
-def FindMeaningOfLife(): 
-
-    if meaning_of_life: 
-    
-        return meaning_of_life
-        
-    else: 
-    
-        GoToTheDock() 
-        
-        GetSomeFries() 
-        
-        # return FindMeaningOfLife() 
+go to the dock and get some fries, man
 
