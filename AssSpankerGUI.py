@@ -227,7 +227,7 @@ def LinalgSpankGUI():
         
     return 
 
-linalg_spank_btn = tk.Button(win, text='♂ LinAlg SPANK ♂', command=LinalgSpankGUI) 
+linalg_spank_btn = tk.Button(win, text='♂ CLS SPANK ♂', command=LinalgSpankGUI) 
 linalg_spank_btn.grid(row=5, column=0, pady=2, padx=2)
 
 
