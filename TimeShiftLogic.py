@@ -12,12 +12,13 @@ def LoadTStandards() -> tuple:
     ''' 
     load in t_standards dictionary from TimeStandards.txt file 
     this is the standards of timing
-    is should only have 5 items 
+    is should only have these items 
     e2e, end to end gap, 0 default
     s2e, start to end, 0 default 
     e2s, end to start, 300 default
     s2s, start to start, 0 default
-    minlen, minimum length of a sub, 50 default
+    minlen, minimum length of a sub, 500 default 
+    para_weight, weights of paragraphs where start and end connect, 3 default 
     time is in miliseconds 
     returns tuple (message,t_standards dictionary) 
     ''' 
@@ -32,22 +33,24 @@ def LoadTStandards() -> tuple:
                        'e2e':0, 
                        's2s':0, 
                        's2e':0, 
-                       'minlen':50, 
-                       'by_style':0} 
+                       'minlen':500, 
+                       'by_style':0, 
+                       'para_weight':3} 
         message += f"{str(t_standards)}" 
         message += os.linesep
         return (message,t_standards) 
     
     for k,v in t_standards.items(): 
-        if type(k)!=str or type(v)!=int or not(k in {'e2s','s2s','s2e','e2e','minlen','by_style'}): 
+        if type(k)!=str or type(v)!=int or not(k in {'e2s','s2s','s2e','e2e','minlen','by_style','para_weight'}): 
             message += 'Error loading time standards, using defaults' 
             message += os.linesep 
             t_standards = {'e2s':300, 
                         'e2e':0, 
                         's2s':0, 
                         's2e':0, 
-                        'minlen':50, 
-                        'by_style':0} 
+                        'minlen':500, 
+                        'by_style':0, 
+                        'para_weight':3} 
     
     message += f"Timing standards are: {os.linesep}"
     message += f"{str(t_standards)} {os.linesep}"

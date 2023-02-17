@@ -1,4 +1,4 @@
-{'e2s': 300, 'e2e': 0, 's2s': 0, 's2e': 0, 'minlen':50, 'by_style':0}
+{'e2s': 300, 'e2e': 0, 's2s': 0, 's2e': 0, 'minlen':50, 'by_style':0, 'para_weight':3}
 e2s is the minimum gap between line end and line start, end is earlier 
 e2e is the minimum gap between line end and line end 
 s2s is the minimum gap between line start and line start  
@@ -7,3 +7,6 @@ s2e is the minimum gap between line start and line end, start is earlier (overla
 by_style is whether violations are found by font style (hence speaker)
 default 0 means find all violations regardless 
 value not 0 means different speaker do not violate timing standards 
+para_weight is how strong paragraphs are anchored in place, default is 3
+    weights too big may result in bugs in the algorithm 
+

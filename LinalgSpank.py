@@ -217,7 +217,7 @@ def Subs2Times(subs:pysubs2.SSAFile) -> list:
 
 
 # helper function turning N times of subs into 2N vector 
-def Times2Vec(times:list) -> np.array: 
+def Times2Vec(times:list) -> np.ndarray: 
     ''' 
     function takes a sub file of length N and turns it into 2N vector array of time ints
     the timings are ordered as start1,end1,start2...endN 
@@ -251,14 +251,16 @@ def LinalgSpank(subs:pysubs2.SSAFile, t_vio:list, t_std:dict) -> tuple:
     # get lower part, as well as paragraph indeces for increasing weights 
     lower_C,lower_CT1,para_inds = FindParagraphMats(subs=subs) 
     # weight of paragraphs, should be >=1, 1 is normal weights as any other timings
-    para_weights = 10
+    para_weight = t_std['para_weight'] 
     
     # getting ||Ax-b|| 
     # first we need b by concatenating [2*T0,upper_CT1,lower_CT1], with paragraphs in T0 increased in weights 
     Times0 = Subs2Times(subs) 
     T0 = Times2Vec(times=Times0)*2 
+    # do para weight
     for i in para_inds: 
-        T0[i] *= para_weights 
+        T0[i] *= para_weight 
+
     b = np.concatenate([T0,upper_CT1,lower_CT1]) 
     
     # to obtain A, we need C, C transpose, and 2*identity matrix adjusted by paragraph weights 
@@ -270,7 +272,7 @@ def LinalgSpank(subs:pysubs2.SSAFile, t_vio:list, t_std:dict) -> tuple:
     # it is better we construct it by first using a 2N vector then make it diagonal
     idntty = np.ones(2*len(subs), dtype=np.int32)*2 
     for i in para_inds: 
-        idntty[i] *= para_weights
+        idntty[i] *= para_weight
     idntty = np.diag(idntty) 
     # sanity check 
     if (idntty.shape[0] != C.shape[1]) or (idntty.shape[1] != C.shape[1]): 

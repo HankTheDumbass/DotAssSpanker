@@ -66,7 +66,7 @@ spanking = {'subs':None, 'save_to':None, 't_std':None, 't_violations':None}
 
 
 # make button for finding file 
-def FindAssPath() -> str: 
+def FindAssPath(): 
     ''' 
     function for calling a window to find .ass file 
     ''' 
